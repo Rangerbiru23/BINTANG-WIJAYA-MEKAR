@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT BINTANG WIJAYA MEKAR - Meta Ads Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary: #004E89;
+            --accent: #A8DADC;
+            --dark: #1D3557;
+            --light: #F1FAEE;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+        }
+
+        .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background-image: url('https://ik.imagekit.io/xcl991/BG-Creative-1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(29, 53, 87, 0.9) 0%, rgba(255, 107, 53, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B35, #A8DADC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.8),
+                         0 0 20px rgba(255, 107, 53, 0.6),
+                         0 0 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .slide-in {
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B35, #E55A2B);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .nav-sticky {
+            backdrop-filter: blur(10px);
+            background: rgba(29, 53, 87, 0.95);
+            transition: all 0.3s ease;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FF6B35, #A8DADC);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1D3557, #004E89);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #FF6B35;
+            transform: rotate(90deg);
+        }
+
+        .footer-bg {
+            background: linear-gradient(135deg, #1D3557, #0a0a0a);
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+            
+            .modal-content {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 nav-sticky">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="brand-font text-2xl font-bold gradient-text">
+                    PT BINTANG WIJAYA MEKAR
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-orange-400 transition">Beranda</a>
+                    <a href="#services" class="hover:text-orange-400 transition">Layanan</a>
+                    <a href="#about" class="hover:text-orange-400 transition">Tentang</a>
+                    <a href="#contact" class="hover:text-orange-400 transition">Kontak</a>
+                    <button onclick="openModal('privacy')" class="hover:text-orange-400 transition">Privacy</button>
+                    <button onclick="openModal('terms')" class="hover:text-orange-400 transition">Terms</button>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                    ☰
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 hover:text-orange-400 transition">Beranda</a>
+                <a href="#services" class="block py-2 hover:text-orange-400 transition">Layanan</a>
+                <a href="#about" class="block py-2 hover:text-orange-400 transition">Tentang</a>
+                <a href="#contact" class="block py-2 hover:text-orange-400 transition">Kontak</a>
+                <button onclick="openModal('privacy')" class="block py-2 hover:text-orange-400 transition text-left">Privacy</button>
+                <button onclick="openModal('terms')" class="block py-2 hover:text-orange-400 transition text-left">Terms</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center">
+        <div class="hero-content text-center px-6 fade-in">
+            <h1 class="brand-font text-5xl md:text-7xl font-bold mb-6 neon-glow">
+                PT BINTANG WIJAYA MEKAR
+            </h1>
+            <h2 class="text-2xl md:text-4xl mb-4 text-orange-300">
+                Meta Ads Specialist Agency
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
+                Transformasikan bisnis Anda dengan iklan Meta yang memukau dan hasil yang luar biasa
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg">
+                    Mulai Sekarang
+                </button>
+                <button class="border-2 border-orange-400 px-8 py-4 rounded-full text-orange-400 font-semibold text-lg hover:bg-orange-400 hover:text-black transition">
+                    Portfolio Kami
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="brand-font text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">
+                Layanan Unggulan Kami
+            </h2>
+            <p class="text-center text-gray-300 text-lg mb-12 max-w-2xl mx-auto">
+                Solusi lengkap untuk kebutuhan advertising Meta Anda
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card card-hover p-8 rounded-2xl text-center scroll-reveal">
+                    <div class="service-icon mx-auto">
+                        🎯
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-400">Meta Ads Strategy</h3>
+                    <p class="text-gray-300">
+                        Strategi iklan yang tepat sasaran untuk maksimalkan ROI bisnis Anda
+                    </p>
+                </div>
+
+                <div class="service-card card-hover p-8 rounded-2xl text-center scroll-reveal">
+                    <div class="service-icon mx-auto">
+                        🎨
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-400">Creative Design</h3>
+                    <p class="text-gray-300">
+                        Desain iklan yang menarik dan engaging untuk audiens Anda
+                    </p>
+                </div>
+
+                <div class="service-card card-hover p-8 rounded-2xl text-center scroll-reveal">
+                    <div class="service-icon mx-auto">
+                        📊
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-400">Performance Analytics</h3>
+                    <p class="text-gray-300">
+                        Analisis mendalam untuk optimasi kampanye berkelanjutan
+                    </p>
+                </div>
+
+                <div class="service-card card-hover p-8 rounded-2xl text-center scroll-reveal">
+                    <div class="service-icon mx-auto">
+                        🚀
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-400">Campaign Management</h3>
+                    <p class="text-gray-300">
+                        Manajemen kampanye profesional dari A hingga Z
+                    </p>
+                </div>
+
+                <div class="service-card card-hover p-8 rounded-2xl text-center scroll-reveal">
+                    <div class="service-icon mx-auto">
+                        💡
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-400">A/B Testing</h3>
+                    <p class="text-gray-300">
+                        Pengujian sistematis untuk temukan formula iklan terbaik
+                    </p>
+                </div>
+
+                <div class="service-card card-hover p-8 rounded-2xl text-center scroll-reveal">
+                    <div class="service-icon mx-auto">
+                        🎭
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-400">Brand Awareness</h3>
+                    <p class="text-gray-300">
+                        Tingkatkan awareness brand dengan kampanye kreatif
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-gradient-to-b from-transparent to-blue-900/20">
+        <div class="container mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="slide-in">
+                    <h2 class="brand-font text-4xl md:text-5xl font-bold mb-6 gradient-text">
+                        Tentang <span class="neon-glow">PT BINTANG WIJAYA MEKAR</span>
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Kami adalah agency spesialis Meta Ads yang berdedikasi untuk membantu bisnis Anda berkembang pesat melalui platform advertising terdepan dunia.
+                    </p>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Dengan tim berpengalaman dan pendekatan data-driven, kami telah membantu ratusan brand mencapai target marketing mereka dengan hasil yang melebihi ekspektasi.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="text-3xl font-bold text-orange-400">500+</h4>
+                            <p class="text-gray-300">Kampanye Sukses</p>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-bold text-orange-400">50+</h4>
+                            <p class="text-gray-300">Client Puas</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary px-6 py-3 rounded-full text-white font-semibold">
+                        Pelajari Lebih Lanjut
+                    </button>
+                </div>
+                <div class="floating">
+                    <div class="card-hover p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-6 text-orange-400">Mengapa Memilih Kami?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-orange-400 mr-3">✓</span>
+                                <span class="text-gray-300">Spesialis Meta Ads certified</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-400 mr-3">✓</span>
+                                <span class="text-gray-300">Strategi custom untuk setiap client</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-400 mr-3">✓</span>
+                                <span class="text-gray-300">Report transparan dan real-time</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-400 mr-3">✓</span>
+                                <span class="text-gray-300">Support 24/7 untuk semua client</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-400 mr-3">✓</span>
+                                <span class="text-gray-300">Garansi hasil atau uang kembali</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="brand-font text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">
+                Hubungi Kami
+            </h2>
+            <p class="text-center text-gray-300 text-lg mb-12">
+                Siap untuk meningkatkan bisnis Anda? Mari berdiskusi!
+            </p>
+            
+            <div class="card-hover p-8 rounded-2xl">
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-orange-400">Informasi Kontak</h3>
+                        <div class="space-y-3">
+                            <p class="flex items-center">
+                                <span class="mr-3">📍</span>
+                                jl. Overste Isdiman No.10B Purwokerto, Desa/Kelurahan Purwokerto Lor, Kec. Purwokerto Timur, Kab. Banyumas, Prov. Jawa Tengah
+                            </p>
+                            <p class="flex items-center">
+                                <span class="mr-3">📞</span>
+                                085285703497
+                            </p>
+                            <p class="flex items-center">
+                                <span class="mr-3">✉️</span>
+                                info@bintangwijayamekar.com
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-orange-400">Jam Operasional</h3>
+                        <div class="space-y-2">
+                            <p>Senin - Jumat: 09:00 - 18:00</p>
+                            <p>Sabtu: 09:00 - 15:00</p>
+                            <p>Minggu: Tutup</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Nama Lengkap" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-orange-400 focus:outline-none">
+                        <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-orange-400 focus:outline-none">
+                    </div>
+                    <input type="text" placeholder="Subjek" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-orange-400 focus:outline-none">
+                    <textarea placeholder="Pesan Anda" rows="5" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-orange-400 focus:outline-none"></textarea>
+                    <button type="submit" class="btn-primary w-full py-3 rounded-lg text-white font-semibold">
+                        Kirim Pesan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-bg py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="brand-font text-2xl font-bold mb-4 gradient-text">
+                        PT BINTANG WIJAYA MEKAR
+                    </h3>
+                    <p class="text-gray-400">
+                        Meta Ads Specialist Agency yang membantu bisnis Anda berkembang pesat.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-orange-400">Layanan</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Meta Ads Strategy</li>
+                        <li>Creative Design</li>
+                        <li>Performance Analytics</li>
+                        <li>Campaign Management</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-orange-400">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><button onclick="openModal('privacy')" class="hover:text-orange-400 transition">Privacy Policy</button></li>
+                        <li><button onclick="openModal('terms')" class="hover:text-orange-400 transition">Terms & Conditions</button></li>
+                        <li><a href="#contact" class="hover:text-orange-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 PT BINTANG WIJAYA MEKAR. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Modal -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('privacy')">&times;</span>
+            <h2 class="brand-font text-3xl font-bold mb-6 gradient-text">Privacy Policy</h2>
+            <div class="text-gray-300 space-y-4">
+                <p><strong>Effective Date:</strong> 1 January 2024</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">1. Information We Collect</h3>
+                <p>PT BINTANG WIJAYA MEKAR collects information you provide directly to us, such as when you create an account, use our services, or contact us for support.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">2. How We Use Your Information</h3>
+                <p>We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">3. Information Sharing</h3>
+                <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">4. Data Security</h3>
+                <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">5. Your Rights</h3>
+                <p>You have the right to access, update, or delete your personal information. Please contact us if you wish to exercise these rights.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">6. Contact Us</h3>
+                <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+                <p>Email: info@bintangwijayamekar.com<br>
+                Phone: 085285703497<br>
+                Address: jl. Overste Isdiman No.10B Purwokerto, Desa/Kelurahan Purwokerto Lor, Kec. Purwokerto Timur, Kab. Banyumas, Prov. Jawa Tengah</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('terms')">&times;</span>
+            <h2 class="brand-font text-3xl font-bold mb-6 gradient-text">Terms & Conditions</h2>
+            <div class="text-gray-300 space-y-4">
+                <p><strong>Effective Date:</strong> 1 January 2024</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">1. Acceptance of Terms</h3>
+                <p>By accessing and using PT BINTANG WIJAYA MEKAR's services, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">2. Services Description</h3>
+                <p>PT BINTANG WIJAYA MEKAR provides Meta Ads advertising services including campaign management, creative design, and performance analytics.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">3. Client Responsibilities</h3>
+                <p>Clients are responsible for providing accurate information, timely payments, and adhering to Meta's advertising policies.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">4. Payment Terms</h3>
+                <p>All payments must be made in accordance with the agreed payment schedule. Late payments may incur additional charges.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">5. Intellectual Property</h3>
+                <p>All creative materials and strategies developed by PT BINTANG WIJAYA MEKAR remain our intellectual property until fully paid for by the client.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">6. Limitation of Liability</h3>
+                <p>PT BINTANG WIJAYA MEKAR shall not be liable for any indirect, incidental, special, or consequential damages.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">7. Termination</h3>
+                <p>Either party may terminate this agreement with written notice. All outstanding payments must be settled upon termination.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">8. Governing Law</h3>
+                <p>These terms and conditions are governed by and construed in accordance with the laws of Indonesia.</p>
+                
+                <h3 class="text-xl font-bold text-orange-400 mt-6">9. Contact Information</h3>
+                <p>For questions about these Terms & Conditions, please contact:</p>
+                <p>PT BINTANG WIJAYA MEKAR<br>
+                jl. Overste Isdiman No.10B Purwokerto, Desa/Kelurahan Purwokerto Lor, Kec. Purwokerto Timur, Kab. Banyumas, Prov. Jawa Tengah<br>
+                Phone: 085285703497<br>
+                Email: info@bintangwijayamekar.com</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Modal Functions
+        function openModal(type) {
+            const modal = document.getElementById(`${type}-modal`);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(type) {
+            const modal = document.getElementById(`${type}-modal`);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    const modalType = modal.id.replace('-modal', '');
+                    closeModal(modalType);
+                }
+            });
+        });
+
+        // Form Submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+            e.target.reset();
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
